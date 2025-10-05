@@ -12,10 +12,12 @@ import { PropertiesPanel } from "@/components/editor/properties-panel";
 import { Timeline } from "@/components/editor/timeline";
 import { PreviewPanel } from "@/components/editor/preview-panel";
 import { EditorHeader } from "@/components/editor/editor-header";
+import { MobileEditorLayout } from "@/components/editor/mobile-editor-layout";
 import { usePanelStore } from "@/stores/panel-store";
 import { useProjectStore } from "@/stores/project-store";
 import { EditorProvider } from "@/components/providers/editor-provider";
 import { usePlaybackControls } from "@/hooks/use-playback-controls";
+import { useMobile } from "@/hooks/use-mobile";
 import { Onboarding } from "@/components/editor/onboarding";
 
 export default function Editor() {
@@ -48,6 +50,7 @@ export default function Editor() {
   const isInitializingRef = useRef<boolean>(false);
 
   usePlaybackControls();
+  const isMobile = useMobile();
 
   useEffect(() => {
     let isCancelled = false;
@@ -155,7 +158,9 @@ export default function Editor() {
       <div className="h-screen w-screen flex flex-col bg-background overflow-hidden">
         <EditorHeader />
         <div className="flex-1 min-h-0 min-w-0">
-          {activePreset === "media" ? (
+          {isMobile ? (
+            <MobileEditorLayout />
+          ) : activePreset === "media" ? (
             <ResizablePanelGroup
               key={`media-${activePreset}-${resetCounter}`}
               direction="horizontal"

@@ -10,6 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { SettingsView } from "./views/settings";
 import { Captions } from "./views/captions";
 
+export { TabBar } from "./tabbar";
+
 export function MediaPanel() {
   const { activeTab } = useMediaPanelStore();
 
