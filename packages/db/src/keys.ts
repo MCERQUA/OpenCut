@@ -10,10 +10,11 @@ export const keys = () =>
       DATABASE_URL: z
         .string()
         .startsWith("postgres://")
-        .or(z.string().startsWith("postgresql://")),
+        .or(z.string().startsWith("postgresql://"))
+        .default("postgresql://opencut:opencutthegoat@localhost:5432/opencut"),
     },
     runtimeEnv: {
       NODE_ENV: process.env.NODE_ENV,
-      DATABASE_URL: process.env.DATABASE_URL,
+      DATABASE_URL: process.env.DATABASE_URL || "postgresql://opencut:opencutthegoat@localhost:5432/opencut",
     },
   });

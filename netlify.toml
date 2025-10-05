@@ -1,6 +1,33 @@
+[build]
+  # Build command for the monorepo - build the web app specifically
+  command = "cd apps/web && bun install && bun run build"
+
+  # Publish directory for Next.js output
+  publish = "apps/web/.next"
+
+  # Node version for builds
+  environment = { NODE_VERSION = "20" }
+
+[build.environment]
+  # Next.js telemetry
+  NEXT_TELEMETRY_DISABLED = "1"
+
 # Next.js plugin
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # Redirects for domain migration
 [[redirects]]
