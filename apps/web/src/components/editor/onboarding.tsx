@@ -11,10 +11,8 @@ export function Onboarding() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasSeenOnboarding = localStorage.getItem("hasSeenOnboarding");
-    if (!hasSeenOnboarding) {
-      setIsOpen(true);
-    }
+    // Onboarding disabled - no longer showing beta messages
+    setIsOpen(false);
   }, []);
 
   const handleNext = () => {
