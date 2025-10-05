@@ -5,10 +5,9 @@
   # Publish directory for Next.js output
   publish = "apps/web/.next"
 
-  # Node version for builds
-  environment = { NODE_VERSION = "20" }
-
 [build.environment]
+  # Node version for builds
+  NODE_VERSION = "20"
   # Next.js telemetry
   NEXT_TELEMETRY_DISABLED = "1"
 
